@@ -1,0 +1,27 @@
+version: "3"
+services:
+  api:
+    container_name: "data-bank"
+    restart: always
+    build: .
+    volumes:
+      - ./src:/usr/src/app/src 
+    environment:
+      - MONGO_URI=mongodb://mongo_api:27017/bank
+      - PORT=3000
+      - NODE_ENV=production
+    ports:
+      - "3000:3000"
+    links:
+      - mongo_api
+    depends_on:
+      - mongo_api
+    command: npm start
+  mongo_api:
+    container_name: "mongo_bank"
+    volumes: 
+      - ./data:/data/db
+    image: mongo
+    ports:
+      - "27017:27017"
+    command: mongod # --quiet

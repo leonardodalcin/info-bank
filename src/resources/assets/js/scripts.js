@@ -28,6 +28,8 @@ $(document).on('click', '#btn-submit', function() {
     .then(data => data.json())
     .then(data => {
 
+        $("#open-qr-code").modal('hide');
+
         let customer = data.customer;
 
         $("#panel-data-bank").show();
@@ -76,6 +78,11 @@ $(document).on('click', '#btn-consult', function() {
     let bank = $('#select-bank').val();
 
     $("#panel-data-bank").hide();
+
+    if ($('#input-cpf').val().trim() == "" || $('#input-password').val().trim() == "") {
+        alert("Preencha os dados para autenticar em sua conta.")
+        return;
+    }
 
     if (bank == 'nubank') {
 

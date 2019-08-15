@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Data Bank</a>
+          </div>
+      
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">            
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="https://github.com/jonathastassi/data-bank-info" target="_blank">Repositório no Github</a></li>              
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Consultar dados bancários</div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label>Qual o banco?</label>
+                        <select id="select-bank" class="form-control">
+                            <option value="">Selecione...</option>
+                            <option value="nubank">Nubank</option>
+                            <option value="">Inter</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Informe seu CPF</label>
+                        <input type="text" id="input-cpf" class="form-control">
+                    </div>
+                    <div class="col-md-4 form-group">
+                        <label>Informe sua senha</label>
+                        <input type="password" id="input-password" class="form-control">
+                    </div>
+                    <div class="col-md-1 form-group">
+                        <button class="btn btn-default mt-25" id="btn-consult"><i class="glyphicon glyphicon-cloud-download"></i></button>
+                    </div>
+                    <div id="panel-data-bank" style="display: none;">
+                        <div class="col-md-6" >
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Meus dados</div>
+                                <div class="panel-body">
+                                    <div class=" data-bank">
+                                        <p><strong>Nome</strong>: <span id="preferred_name"></span></p>
+                                        <p><strong>Nome Completo</strong>: <span id="name"></span></p>
+                                        <p><strong>CPF</strong>: <span id="cpf"></span></p>
+                                        <p><strong>RG</strong>: <span id="rg"></span></p>
+                                        <p><strong>E-mail</strong>: <span id="email"></span></p>
+                                        <p><strong>Gênero</strong>: <span id="gender"></span></p>
+                                        <p><strong>Nacionalidade</strong>: <span id="nationality"></span></p>
+                                        <p><strong>Cidade</strong>: <span id="address_city"></span> - <span id="address_state"></span></p>
+                                        <p><strong>CEP</strong>: <span id="address_postcode"></span></p>
+                                        <p><strong>Rua</strong>: <span id="address_line1"></span></p>
+                                        <p><strong>Número</strong>: <span id="address_number"></span></p>
+                                        <p><strong>Bairro</strong>: <span id="address_locality"></span></p>
+                                        <p><strong>País</strong>: <span id="address_country"></span></p>                                      
+                                        <p><strong>Fone</strong>: <span id="phone"></span></p>
+                                        <p><strong>Data de Nascimento</strong>: <span id="dob"></span></p>
+                                        <p><strong>Estado Civil</strong>: <span id="marital_status"></span></p>                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Meu Resumo <small>Cartão de Crédito</small></div>
+                                <div class="panel-body height-panel">
+                                    <h5>Fatura fecha em <small id="next_close_date"></small></h5>
+                                    <h5>Deve ser paga em <small id="next_due_date"></small></h5>
+                                    <ul class="list-group">     
+                                        <li class="list-group-item list-group-item-danger" >
+                                            <h4 class="list-group-item-heading">Em aberto <small id="future"></small></h4>
+                                        </li>                                   
+                                        <li class="list-group-item list-group-item-warning" >
+                                            <h4 class="list-group-item-heading">Fatura Atual <small id="open"></small></h4>
+                                        </li>                                   
+                                        <li class="list-group-item list-group-item-success" >
+                                            <h4 class="list-group-item-heading">Limite Disponível <small id="available"></small></h4>
+                                        </li>                                   
+                                    </ul>
+                                    <h5>Minhas Compras</h5>
+                                    <ul class="list-group" id="list-events">                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-4">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Minhas Compras <small>Cartão de Crédito</small></div>
+                                <div class="panel-body height-panel">
+                                    <ul class="list-group" id="list-events">                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                         -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="open-qr-code" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Autenticação</h4>
+            </div>
+            <div class="modal-body">
+              <p>Para acessar sua conta:</p>
+              <ol>
+                  <li>Abra o app atualizado do Nubank no seu celular e toque no símbolo ￼<img src="https://app.nubank.com.br/images/nu-purple.svg" class="logo-modal-nubank" alt="Nubank"> para acessar o menu de configurações;</li>
+                  <li>Selecione Perfil e em seguida selecione Acesso pelo site;</li>
+                  <li>Aponte o celular para a tela do computador para capturar o QR code;
+                      <div class="row mt-25">
+                          <div class="col-md-12 text-center">
+                              <img id='barcode' 
+                              src="https://api.qrserver.com/v1/create-qr-code/?data=hello&size=250x250" 
+                              alt="" 
+                              title="QrCode de autenticação" 
+                              width="250" 
+                              height="250" />
+                          </div>
+                      </div>
+                  </li>
+                  <li class="mt-25">Clique em OK para visualizar as informações da sua conta.</li>
+              </ol>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="btn-submit" >OK</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/scripts.js"></script>
+</body>
+</html>

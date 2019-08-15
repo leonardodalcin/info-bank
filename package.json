@@ -1,0 +1,26 @@
+{
+  "name": "webscrapping-puppetter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app_copy.js",
+  "bin": {
+    "webscrapping-puppetter": "server.js"
+  },
+  "scripts": {
+    "start": "nodemon bin/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.4.1",
+    "consign": "^0.1.6",
+    "express": "^4.17.1",
+    "jquery": "^3.4.1",
+    "node-fetch": "^2.6.0",
+    "puppeteer": "^1.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
